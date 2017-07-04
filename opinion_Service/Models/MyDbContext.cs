@@ -6,8 +6,9 @@ using System.Data.Entity;
 
 namespace opinion_Service.Models
 {
-    public class OpinionDbContext : DbContext
+    public class MyDbContext : DbContext
     {
         public DbSet<User> UserAccount { get; set; }
+        public DbSet<Opinion> Opinions { get; set; }
     }
 }

@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Diagnostics;
 using System.Security;
 using opinion_Service.Models;
+using opinion_Service.Services;
+
 
 namespace opinion_Service.Controllers
 {
@@ -16,6 +18,26 @@ namespace opinion_Service.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Login(User user)
+        {
+            using (var ctx = new MyDbContext())
+            {
+                var dbUser = (from usr in ctx.UserAccount
+                              where usr.Username.Equals(user.Username)
+                              select usr).FirstOrDefault();
+
+                if (dbUser != null && Security.DecrypteAndCheck(user.Password, dbUser.Salt, dbUser.Password))
+                {
+                    ViewBag.Result = "Login Succesed";
+                }
+                else
+                {
+                    ViewBag.Result = "Login Failed";
+                }
+            }
+            return View();
+        }
         public ActionResult Register()
         {
             return View();
@@ -23,9 +45,35 @@ namespace opinion_Service.Controllers
         [HttpPost]
         public ActionResult Register(User user)
         {
-            ViewBag.Message = user.Username;
+            using (var ctx = new MyDbContext())
+            {
+                var usr = (from dbUser in ctx.UserAccount
+                           where user.Username.Equals(dbUser.Username)
+                           select dbUser).FirstOrDefault();
+
+                if (usr == null)
+                {
+                    String saltText;
+                    String saltedHashedPassword = Security.Encrypte(user.Password, out saltText);
+
+                    var securedUser = new User()
+                    {
+                        Username = user.Username,
+                        Salt = saltText,
+                        Password = saltedHashedPassword
+                    };
+
+                    ctx.UserAccount.Add(securedUser);
+                    ctx.SaveChanges();
+                    ViewBag.Result = "Registration Completed";
+                }
+                else
+                {
+                    ViewBag.Result = "Failed Username already taken!!";
+                }
+            }
             return View();
         }
-       
+
     }
 }
