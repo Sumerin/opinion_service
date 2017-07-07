@@ -21,6 +21,6 @@ namespace opinion_Service.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
         
-        public virtual ICollection<Opinion> Opinions { get; set; }
+        public virtual List<Opinion> Opinions { get; set; }
     }
 }

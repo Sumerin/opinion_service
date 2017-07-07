@@ -19,21 +19,30 @@ namespace opinion_Service.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(User user)
+        [ValidateAntiForgeryToken]
+        public ActionResult Login([Bind(Include = "Username,Password")]User user)
         {
-            using (var ctx = new MyDbContext())
+            if (ModelState.IsValid)
             {
-                var dbUser = (from usr in ctx.UserAccount
-                              where usr.Username.Equals(user.Username)
-                              select usr).FirstOrDefault();
+                using (var ctx = new MyDbContext())
+                {
+                    var dbUser = (from usr in ctx.UserAccount
+                                  where usr.Username.Equals(user.Username)
+                                  select usr).FirstOrDefault();
 
-                if (dbUser != null && Security.DecrypteAndCheck(user.Password, dbUser.Salt, dbUser.Password))
-                {
-                    ViewBag.Result = "Login Succesed";
-                }
-                else
-                {
-                    ViewBag.Result = "Login Failed";
+                    if (dbUser != null && Security.DecrypteAndCheck(user.Password, dbUser.Salt, dbUser.Password))
+                    {
+
+                        
+                        Session["User"] = dbUser;
+
+                        ViewBag.Result = "Login Succesed";
+                    }
+                    else
+                    {
+                        ViewBag.Result = "Login Failed";
+                        return View(user);
+                    }
                 }
             }
             return View();
