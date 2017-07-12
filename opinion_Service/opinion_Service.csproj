@@ -165,6 +165,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Site.cs" />
     <Compile Include="Models\Opinion.cs" />
     <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\User.cs" />
@@ -212,6 +213,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Opinions\Create.cshtml" />
     <Content Include="Views\Opinions\Index.cshtml" />
+    <Content Include="Views\Account\Logged.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
