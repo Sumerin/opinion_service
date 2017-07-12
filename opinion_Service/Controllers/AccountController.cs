@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Diagnostics;
-using System.Security;
 using opinion_Service.Models;
 using opinion_Service.Services;
 
@@ -16,6 +12,10 @@ namespace opinion_Service.Controllers
 
         public ActionResult Login()
         {
+            if (Session["User"] != null)
+            {
+                return RedirectToAction("Logged");
+            }
             return View();
         }
         [HttpPost]
@@ -33,10 +33,10 @@ namespace opinion_Service.Controllers
                     if (dbUser != null && Security.DecrypteAndCheck(user.Password, dbUser.Salt, dbUser.Password))
                     {
 
-                        
-                        Session["User"] = dbUser;
 
-                        ViewBag.Result = "Login Succesed";
+                        Session["User"] = dbUser;
+                        return RedirectToAction("Logged");
+
                     }
                     else
                     {
@@ -83,6 +83,20 @@ namespace opinion_Service.Controllers
             }
             return View();
         }
-
+        public ActionResult Logged()
+        {
+            User loggedUser = Session["User"] as User;
+            if (loggedUser != null)
+            {
+                ViewBag.Result = loggedUser.Username;
+                return View();
+            }
+            return HttpNotFound();
+        }
+        public ActionResult Logout()
+        {
+            Session["User"] = null;
+            return RedirectToAction("Login");
+        }
     }
 }
