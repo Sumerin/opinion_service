@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Ip)
+            @Html.DisplayNameFor(model => model.Site.DomainName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
@@ -26,7 +26,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Ip)
+                @Html.DisplayFor(modelItem => item.Site.DomainName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
