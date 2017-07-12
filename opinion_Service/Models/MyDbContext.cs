@@ -10,5 +10,6 @@ namespace opinion_Service.Models
     {
         public DbSet<User> UserAccount { get; set; }
         public DbSet<Opinion> Opinions { get; set; }
+        public DbSet<Site> Sites { get; set; }
     }
 }

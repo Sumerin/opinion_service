@@ -11,10 +11,14 @@ namespace opinion_Service.Models
     {
         [Key]
         public int OpinionId { get; set; }
-
-        [Required (ErrorMessage ="Reqired Domain Name")]
-        public string Ip { get; set; }
+        [Required (ErrorMessage ="Description")]
         public string Description { get; set; }
         public User User { get; set; }
+        public Site Site { get; set; }
+
+        public Opinion()
+        {
+            Site = new Site();
+        }
     }
 }
