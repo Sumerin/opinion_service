@@ -14,5 +14,10 @@ namespace opinion_Service.Models
         [Required(ErrorMessage ="Required Site Name")]
         public string DomainName { get; set; }
         public virtual ICollection<Opinion> Opinions { get; set; }
+
+        public Site()
+        {
+            Opinions = new HashSet<Opinion>();
+        }
     }
 }

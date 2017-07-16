@@ -20,6 +20,11 @@ namespace opinion_Service.Models
         [Required(ErrorMessage ="Password is required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        public virtual List<Opinion> Opinions { get; set; }
+        public virtual ICollection<Opinion> Opinions { get; set; }
+
+        public User()
+        {
+            Opinions = new HashSet<Opinion>();
+        }
     }
 }
