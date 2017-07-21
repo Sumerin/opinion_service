@@ -14,7 +14,6 @@ namespace opinion_Service.Models
 
         [Required(ErrorMessage ="Username is required")]
         public string Username { get; set; }
-
         public string Salt { get; set; }
 
         [Required(ErrorMessage ="Password is required")]

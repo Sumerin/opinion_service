@@ -18,7 +18,6 @@ namespace opinion_Service.Models
 
         public Opinion()
         {
-            Site = new Site();
         }
     }
 }
