@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using opinion_Service.Models;
+using System.Diagnostics;
 
 namespace Administration_Panel
 {
@@ -47,27 +48,31 @@ namespace Administration_Panel
             
         }
 
-        private void LoadSiteToView()
+        private void AddRecord(object sender, RoutedEventArgs e)
         {
-            using (var ctx = new MyDbContext())
+            switch ((ChoosenTab)TabControl.SelectedIndex)
             {
-                SiteDataGrid.ItemsSource = ctx.Sites.ToList();
+                case ChoosenTab.SiteTab:
+                    AddSiteRecord();
+                    break;
+
+                case ChoosenTab.UserTab:
+                    AddUserRecord();
+                    break;
+
+                case ChoosenTab.OpinionTab:
+                    AddOpinionRecord();
+                    break;
+
+                default:
+
+                    break;
             }
         }
 
-        private void LoadUserDataToView()
+        private void DeleteRecord(object sender, RoutedEventArgs e)
         {
-            using (var ctx = new MyDbContext())
-            {
-                UserDataGrid.ItemsSource = ctx.UserAccount.ToList();
-            }
-        }
-        private void LoadOpinionToView()
-        {
-            using (var ctx = new MyDbContext())
-            {
-                OpinionDataGrid.ItemsSource = ctx.Opinions.Include("Site").ToList();
-            }
+
         }
     }
 }
