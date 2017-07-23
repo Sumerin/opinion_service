@@ -42,5 +42,6 @@
         </TabControl>
         <Button Content="New" HorizontalAlignment="Left" Margin="45,512,0,0" VerticalAlignment="Top" Width="74" Click="AddRecord"/>
         <Button Content="Delete" HorizontalAlignment="Left" Margin="181,512,0,0" VerticalAlignment="Top" Width="74" Click="DeleteRecord"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="181,512,0,0" VerticalAlignment="Top" Width="74" Click="RefreshRecord"/>
     </Grid>
 </Window>

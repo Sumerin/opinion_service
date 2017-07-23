@@ -74,5 +74,12 @@ namespace Administration_Panel
         {
 
         }
+
+        private void RefreshRecord(object sender, RoutedEventArgs e)
+        {
+            LoadSiteToViewAsync();
+            LoadUserDataToViewAsync();
+            LoadOpinionToViewAsync();
+        }
     }
 }

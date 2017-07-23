@@ -22,8 +22,13 @@ namespace Administration_Panel
         {
             using (var ctx = new MyDbContext())
             {
-                OpinionDataGrid.ItemsSource = ctx.Opinions.Include("Site").ToList();
+                var executedResult = ctx.Opinions.Include("Site").ToList();
+                Application.Current.Dispatcher.Invoke(() => OpinionDataGrid.ItemsSource = executedResult);
             }
+        }
+        private async void LoadOpinionToViewAsync()
+        {
+            await Task.Factory.StartNew(LoadOpinionToView);
         }
         private void AddOpinionRecord()
         { }

@@ -24,8 +24,13 @@ namespace Administration_Panel
         {
             using (var ctx = new MyDbContext())
             {
-                SiteDataGrid.ItemsSource = ctx.Sites.ToList();
+                var executedResult = ctx.Sites.ToList();
+                Application.Current.Dispatcher.Invoke(() => SiteDataGrid.ItemsSource = executedResult);
             }
+        }
+        private async void LoadSiteToViewAsync()
+        {
+            await Task.Factory.StartNew(LoadSiteToView);
         }
         private void AddSiteRecord()
         {

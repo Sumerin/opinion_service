@@ -23,9 +23,15 @@ namespace Administration_Panel
         {
             using (var ctx = new MyDbContext())
             {
-                UserDataGrid.ItemsSource = ctx.UserAccount.ToList();
+                var executedResult = ctx.UserAccount.ToList();
+                Application.Current.Dispatcher.Invoke(() => UserDataGrid.ItemsSource = executedResult);
             }
         }
+        private async void LoadUserDataToViewAsync()
+        {
+            await Task.Factory.StartNew(LoadUserDataToView);
+        }
+
         public void AddUserRecord()
         {
             new UserForm().Show();
