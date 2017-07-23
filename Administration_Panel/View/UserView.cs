@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using opinion_Service.Models;
+using Administration_Panel.RecordViewModel;
 
 namespace Administration_Panel
 {
@@ -26,6 +27,8 @@ namespace Administration_Panel
             }
         }
         public void AddUserRecord()
-        { }
+        {
+            new UserForm().Show();
+        }
     }
 }

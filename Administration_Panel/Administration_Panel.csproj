@@ -66,6 +66,9 @@
     <Compile Include="RecordViewModel\SiteForm.xaml.cs">
       <DependentUpon>SiteForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RecordViewModel\UserForm.xaml.cs">
+      <DependentUpon>UserForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\OpinionView.cs" />
     <Compile Include="View\SiteView.cs" />
     <Compile Include="View\UserView.cs" />
@@ -82,6 +85,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="RecordViewModel\SiteForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RecordViewModel\UserForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
