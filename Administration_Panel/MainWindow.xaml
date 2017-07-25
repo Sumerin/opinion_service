@@ -8,7 +8,7 @@
         Title="MainWindow" Height="720" Width="1024">
     <Grid>
         <TabControl x:Name="TabControl" HorizontalAlignment="Left" Height="459" Margin="10,10,0,0" VerticalAlignment="Top" Width="614">
-            <TabItem Header="Site" Height="22" VerticalAlignment="Top">
+            <TabItem Header="Site" Height="22" VerticalAlignment="Bottom" Margin="-2,-2,-2,4">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="SiteDataGrid" HorizontalAlignment="Left" Height="411" Margin="10,10,0,0" VerticalAlignment="Top" Width="164">
                         <DataGrid.Columns>
@@ -28,7 +28,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Opinion">
+            <TabItem Header="Opinion" Height="24" VerticalAlignment="Bottom">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="OpinionDataGrid" Margin="10">
                         <DataGrid.Columns>
@@ -42,6 +42,11 @@
         </TabControl>
         <Button Content="New" HorizontalAlignment="Left" Margin="45,512,0,0" VerticalAlignment="Top" Width="74" Click="AddRecord"/>
         <Button Content="Delete" HorizontalAlignment="Left" Margin="181,512,0,0" VerticalAlignment="Top" Width="74" Click="DeleteRecord"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" Margin="181,512,0,0" VerticalAlignment="Top" Width="74" Click="RefreshRecord"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="300,512,0,0" VerticalAlignment="Top" Width="74" Click="RefreshRecord"/>
+        <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="44" Margin="624,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="279" TextChanged="SearchFor"/>
+        <ComboBox x:Name="SearchChoose" Margin="908,42,10,603">
+            <ComboBoxItem>Site</ComboBoxItem>
+            <ComboBoxItem>User</ComboBoxItem>
+        </ComboBox>
     </Grid>
 </Window>

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using opinion_Service.Models;
-using Administration_Panel.RecordViewModel;
+using Administration_Panel.ModelViewWindow;
 
 namespace Administration_Panel
 {
@@ -35,6 +35,15 @@ namespace Administration_Panel
         public void AddUserRecord()
         {
             new UserForm().Show();
+        }
+        private void SearchForSite_UserView(string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SearchForUser_UserView(string text)
+        {
+            throw new NotImplementedException();
         }
     }
 }

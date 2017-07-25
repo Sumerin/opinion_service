@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using opinion_Service.Models;
-using Administration_Panel.RecordViewModel;
+using Administration_Panel.ModelViewWindow;
 
 namespace Administration_Panel
 {
@@ -28,13 +28,24 @@ namespace Administration_Panel
                 Application.Current.Dispatcher.Invoke(() => SiteDataGrid.ItemsSource = executedResult);
             }
         }
+
         private async void LoadSiteToViewAsync()
         {
             await Task.Factory.StartNew(LoadSiteToView);
         }
+
         private void AddSiteRecord()
         {
             new SiteForm().Show();
+        }
+        private void SearchForUser_SiteView(string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SearchForSite_SiteView(string text)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -31,6 +31,16 @@ namespace Administration_Panel
             await Task.Factory.StartNew(LoadOpinionToView);
         }
         private void AddOpinionRecord()
-        { }
+        {
+        }
+        private void SearchForUser_OpinionView(string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SearchForSite_OpinionView(string text)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

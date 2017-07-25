@@ -62,13 +62,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enums\ChoosenSearch.cs" />
     <Compile Include="Enums\ChoosenTab.cs" />
-    <Compile Include="RecordViewModel\SiteForm.xaml.cs">
+    <Compile Include="ModelViewWindow\OpinionForm.xaml.cs">
+      <DependentUpon>OpinionForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModelViewWindow\SiteForm.xaml.cs">
       <DependentUpon>SiteForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RecordViewModel\UserForm.xaml.cs">
+    <Compile Include="ModelViewWindow\UserForm.xaml.cs">
       <DependentUpon>UserForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModelViewWindow\ViewModel\OpinionViewModel.cs" />
+    <Compile Include="ModelViewWindow\ViewModel\ViewModelClassResource\NotifyPropertyChanged.cs" />
+    <Compile Include="ModelViewWindow\ViewModel\ViewModelClassResource\RelayCommand.cs" />
+    <Compile Include="ModelViewWindow\ViewModel\SiteViewModel.cs" />
+    <Compile Include="ModelViewWindow\ViewModel\UserViewModel.cs" />
     <Compile Include="View\OpinionView.cs" />
     <Compile Include="View\SiteView.cs" />
     <Compile Include="View\UserView.cs" />
@@ -84,11 +93,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RecordViewModel\SiteForm.xaml">
+    <Page Include="ModelViewWindow\OpinionForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RecordViewModel\UserForm.xaml">
+    <Page Include="ModelViewWindow\SiteForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModelViewWindow\UserForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
