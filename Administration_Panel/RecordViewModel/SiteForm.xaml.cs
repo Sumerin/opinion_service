@@ -25,10 +25,17 @@ namespace Administration_Panel.RecordViewModel
     {
         public string DomainName { get; set; }
 
+        private Site site;
         public SiteForm()
         {
             InitializeComponent();
             this.DataContext = this;
+        }
+        public SiteForm(Site editSite)
+        {
+            InitializeComponent();
+            this.DataContext = this;
+            site = editSite;
         }
 
         private bool IsSiteAvaliable(string Domain)
@@ -76,9 +83,15 @@ namespace Administration_Panel.RecordViewModel
                     Result.Text = "Already Exist!!";
                     return;
                 }
-
-                var newSite = new Site() { DomainName = this.DomainName };
-                ctx.Sites.Add(newSite);
+                if (site == null)
+                {
+                    var newSite = new Site() { DomainName = this.DomainName };
+                    ctx.Sites.Add(newSite);
+                }
+                else
+                {
+                    site.DomainName = this.DomainName;
+                }
                 ctx.SaveChanges();
             }
             this.Close();
