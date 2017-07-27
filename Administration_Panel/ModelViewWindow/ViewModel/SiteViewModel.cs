@@ -94,6 +94,7 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
             ResultText = "No Avaliable Domain";
             return false;
         }
+
         #region Event_Handlers
         private void SubmitButton_Click(object obj)
         {

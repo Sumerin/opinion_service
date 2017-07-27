@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using opinion_Service.Models;
+using Administration_Panel.ModelViewWindow;
 
 namespace Administration_Panel
 {
@@ -32,6 +33,7 @@ namespace Administration_Panel
         }
         private void AddOpinionRecord()
         {
+            new OpinionForm().Show();
         }
         private void SearchForUser_OpinionView(string text)
         {
