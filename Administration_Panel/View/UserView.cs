@@ -52,5 +52,23 @@ namespace Administration_Panel
         {
             await Task.Factory.StartNew(() => SearchForUser_UserView(text));
         }
+
+        private void DeleteUserRecord()
+        {
+            var selected = SiteDataGrid.SelectedItem as User;
+
+            if (selected != null)
+            {
+                using (var ctx = new MyDbContext())
+                {
+                    var record = (from user in ctx.UserAccount
+                                  where user.UserId.Equals(selected.UserId)
+                                  select user).FirstOrDefault();
+
+                    ctx.UserAccount.Remove(record);
+                    ctx.SaveChanges();
+                }
+            }
+        }
     }
 }

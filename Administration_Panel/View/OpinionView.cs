@@ -56,5 +56,22 @@ namespace Administration_Panel
                 Application.Current.Dispatcher.Invoke(() => OpinionDataGrid.ItemsSource = executedResult);
             }
         }
+        private void DeleteOpinionRecord()
+        {
+            var selected = SiteDataGrid.SelectedItem as Opinion;
+
+            if (selected != null)
+            {
+                using (var ctx = new MyDbContext())
+                {
+                    var record = (from opinion in ctx.Opinions
+                                  where opinion.OpinionId.Equals(selected.OpinionId)
+                                  select opinion).FirstOrDefault();
+
+                    ctx.Opinions.Remove(record);
+                    ctx.SaveChanges();
+                }
+            }
+        }
     }
 }

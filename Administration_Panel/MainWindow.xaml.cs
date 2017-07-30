@@ -81,7 +81,24 @@ namespace Administration_Panel
 
         private void DeleteRecord(object sender, RoutedEventArgs e)
         {
+            switch ((ChoosenTab)TabControl.SelectedIndex)
+            {
+                case ChoosenTab.SiteTab:
+                    DeleteSiteRecord();
+                    break;
 
+                case ChoosenTab.UserTab:
+                    DeleteUserRecord();
+                    break;
+
+                case ChoosenTab.OpinionTab:
+                    DeleteOpinionRecord();
+                    break;
+
+                default:
+
+                    break;
+            }
         }
 
         private void RefreshRecord(object sender, RoutedEventArgs e)

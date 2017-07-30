@@ -40,18 +40,35 @@ namespace Administration_Panel
         }
         private void SearchForSite_SiteView(string text)
         {
-                using (var ctx = new MyDbContext())
-                {
-                    var executedResult = (from site in ctx.Sites
-                                          where site.DomainName.Contains(text)
-                                          select site).ToList();
-                    Application.Current.Dispatcher.Invoke(() => SiteDataGrid.ItemsSource = executedResult);
-                }
+            using (var ctx = new MyDbContext())
+            {
+                var executedResult = (from site in ctx.Sites
+                                      where site.DomainName.Contains(text)
+                                      select site).ToList();
+                Application.Current.Dispatcher.Invoke(() => SiteDataGrid.ItemsSource = executedResult);
+            }
         }
         private async void SearchForSite_SiteViewAsync(string text)
         {
             await Task.Factory.StartNew(() => SearchForSite_SiteView(text));
-           }
+        }
+        private void DeleteSiteRecord()
+        {
+            var selected = SiteDataGrid.SelectedItem as Site;
+
+            if (selected != null)
+            {
+                using (var ctx = new MyDbContext())
+                {
+                    var record = (from site in ctx.Sites
+                                  where site.SiteId.Equals(selected.SiteId)
+                                  select site).FirstOrDefault();
+
+                    ctx.Sites.Remove(record);
+                    ctx.SaveChanges();
+                }
+            }
+        }
 
     }
 }
