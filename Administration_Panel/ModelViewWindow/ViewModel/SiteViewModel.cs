@@ -17,11 +17,6 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
 {
     class SiteViewModel : NotifyPropertyChanged
     {
-
-        private string _DomainName;
-        private string _ResultText;
-        private bool _SubmitButtonIsEnabled;
-
         public string DomainName
         {
             get { return _DomainName; }
@@ -53,6 +48,10 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
 
         private Site site;
         private Window siteWindow;
+
+        private string _DomainName;
+        private string _ResultText;
+        private bool _SubmitButtonIsEnabled;
 
         public SiteViewModel(Window siteWindow)
         {

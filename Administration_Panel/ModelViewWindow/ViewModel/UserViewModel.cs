@@ -18,9 +18,6 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
 
         private const int MIN_PASSWD_SIZE = 8;
 
-        public string _Username;
-        public String _ResultText;
-
         public string Username
         {
             get { return _Username; }
@@ -39,6 +36,10 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
 
         private User user;
         private Window userWindow;
+
+        private string _Username;
+        private String _ResultText;
+
 
         public UserViewModel(Window userWindow)
         {
