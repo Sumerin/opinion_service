@@ -45,6 +45,10 @@ namespace Administration_Panel
                 Application.Current.Dispatcher.Invoke(() => OpinionDataGrid.ItemsSource = executedResult);
             }
         }
+        private async void SearchForUser_OpinionViewAsync(string text)
+        {
+            await Task.Factory.StartNew(() => SearchForUser_OpinionView(text));
+        }
 
         private void SearchForSite_OpinionView(string text)
         {
@@ -56,7 +60,12 @@ namespace Administration_Panel
                 Application.Current.Dispatcher.Invoke(() => OpinionDataGrid.ItemsSource = executedResult);
             }
         }
-        private void DeleteOpinionRecord()
+
+        private async void SearchForSite_OpinionViewAsync(string text)
+        {
+            await Task.Factory.StartNew(() => SearchForSite_OpinionView(text));
+        }
+            private void DeleteOpinionRecord()
         {
             var selected = SiteDataGrid.SelectedItem as Opinion;
 
