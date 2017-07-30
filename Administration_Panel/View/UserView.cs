@@ -36,14 +36,21 @@ namespace Administration_Panel
         {
             new UserForm().Show();
         }
-        private void SearchForSite_UserView(string text)
-        {
-            throw new NotImplementedException();
-        }
 
         private void SearchForUser_UserView(string text)
         {
-            throw new NotImplementedException();
+            using (var ctx = new MyDbContext())
+            {
+                var executedResult = (from user in ctx.UserAccount
+                                      where user.Username.Contains(text)
+                                      select user).ToList();
+                Application.Current.Dispatcher.Invoke(() => UserDataGrid.ItemsSource = executedResult);
+            }
+        }
+
+        private async void SearchForUser_UserViewAsync(string text)
+        {
+            await Task.Factory.StartNew(() => SearchForUser_UserView(text));
         }
     }
 }

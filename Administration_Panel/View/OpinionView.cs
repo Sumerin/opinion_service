@@ -23,7 +23,7 @@ namespace Administration_Panel
         {
             using (var ctx = new MyDbContext())
             {
-                var executedResult = ctx.Opinions.Include("Site").ToList();
+                var executedResult = ctx.Opinions.Include("Site").Include("User").ToList();
                 Application.Current.Dispatcher.Invoke(() => OpinionDataGrid.ItemsSource = executedResult);
             }
         }
@@ -37,12 +37,24 @@ namespace Administration_Panel
         }
         private void SearchForUser_OpinionView(string text)
         {
-            throw new NotImplementedException();
+            using (var ctx = new MyDbContext())
+            {
+                var executedResult = (from opinion in ctx.Opinions.Include("Site").Include("User")
+                                      where opinion.User.Username.Contains(text)
+                                      select opinion).ToList();
+                Application.Current.Dispatcher.Invoke(() => OpinionDataGrid.ItemsSource = executedResult);
+            }
         }
 
         private void SearchForSite_OpinionView(string text)
         {
-            throw new NotImplementedException();
+            using (var ctx = new MyDbContext())
+            {
+                var executedResult = (from opinion in ctx.Opinions.Include("Site").Include("User")
+                                      where opinion.Site.DomainName.Contains(text)
+                                      select opinion).ToList();
+                Application.Current.Dispatcher.Invoke(() => OpinionDataGrid.ItemsSource = executedResult);
+            }
         }
     }
 }

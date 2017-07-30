@@ -98,12 +98,9 @@ namespace Administration_Panel
             {
                 case ChoosenSearch.Site:
                     SearchForSite_SiteView(send.Text);
-                    SearchForSite_UserView(send.Text);
                     SearchForSite_OpinionView(send.Text);
                     break;
                 case ChoosenSearch.User:
-
-                    SearchForUser_SiteView(send.Text);
                     SearchForUser_UserView(send.Text);
                     SearchForUser_OpinionView(send.Text);
                     break;

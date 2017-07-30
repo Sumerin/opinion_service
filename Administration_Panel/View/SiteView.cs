@@ -38,14 +38,20 @@ namespace Administration_Panel
         {
             new SiteForm().Show();
         }
-        private void SearchForUser_SiteView(string text)
-        {
-            throw new NotImplementedException();
-        }
-
         private void SearchForSite_SiteView(string text)
         {
-            throw new NotImplementedException();
+                using (var ctx = new MyDbContext())
+                {
+                    var executedResult = (from site in ctx.Sites
+                                          where site.DomainName.Contains(text)
+                                          select site).ToList();
+                    Application.Current.Dispatcher.Invoke(() => SiteDataGrid.ItemsSource = executedResult);
+                }
         }
+        private async void SearchForSite_SiteViewAsync(string text)
+        {
+            await Task.Factory.StartNew(() => SearchForSite_SiteView(text));
+           }
+
     }
 }
