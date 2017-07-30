@@ -10,13 +10,29 @@ using System.Windows.Input;
 
 namespace Administration_Panel.ModelViewWindow.ViewModel
 {
-    class OpinionViewModel
+    class OpinionViewModel : NotifyPropertyChanged
     {
         public ObservableCollection<Site> SiteCollection { get; set; }
-        public int SelectedSiteIndex { get; set; }
+        public int SelectedSiteIndex
+        {
+            get { return _SelectedSiteIndex; }
+            set
+            {
+                _SelectedSiteIndex = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<User> UserCollection { get; set; }
-        public int SelectedUserIndex { get; set; }
+        public int SelectedUserIndex
+        {
+            get { return _SelectedUserIndex; }
+            set
+            {
+                _SelectedUserIndex = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string OpinionBody { get; set; }
 
@@ -27,6 +43,10 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
 
         private Opinion opinion;
         private Window opinionWindow;
+
+        private int _SelectedSiteIndex;
+        private int _SelectedUserIndex;
+
         public OpinionViewModel(Window opinionWindow)
         {
             this.opinionWindow = opinionWindow;
@@ -36,8 +56,9 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
         public OpinionViewModel(Window opinionWindow, Opinion editOpinion) : this(opinionWindow)
         {
             opinion = editOpinion;
+            OpinionBody = opinion.Description;
         }
-        async void LoadCombboxResource()
+        void LoadCombboxResource()
         {
             var load = new Task[2];
             load[0] = Task.Factory.StartNew(
@@ -61,7 +82,48 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
         }
         private void SubmitBtn(object obj)
         {
+            if (!String.IsNullOrEmpty(OpinionBody))
+            {
+                using (var ctx = new MyDbContext())
+                {
+                    int choosenUser = UserCollection[SelectedUserIndex].UserId;
 
+                    int choosenSite = SiteCollection[SelectedSiteIndex].SiteId;
+
+                    var opinionMadeBy = (from user in ctx.UserAccount
+                                         where user.UserId.Equals(choosenUser)
+                                         select user).FirstOrDefault();
+
+                    var opinionAddress = (from site in ctx.Sites
+                                          where site.SiteId.Equals(choosenSite)
+                                          select site).FirstOrDefault();
+
+                    if (opinion == null)
+                    {
+
+                        opinion = new Opinion()
+                        {
+                            Site = opinionAddress,
+                            User = opinionMadeBy,
+                            Description = OpinionBody
+                        };
+                        ctx.Opinions.Add(opinion);
+
+
+
+
+                    }
+                    else
+                    {
+                        opinion.Site = opinionAddress;
+                        opinion.User = opinionMadeBy;
+                        opinion.Description = OpinionBody;
+                    }
+
+                    ctx.SaveChanges();
+                    opinionWindow.Close();
+                }
+            }
         }
     }
 }
