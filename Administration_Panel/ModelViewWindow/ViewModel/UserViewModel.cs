@@ -103,6 +103,7 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
                 }
             }
         }
+
         private bool IsExistingInDatabase(MyDbContext ctx, string username)
         {
             var user = (from dbUser in ctx.UserAccount

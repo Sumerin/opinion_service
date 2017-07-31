@@ -27,6 +27,7 @@ namespace Administration_Panel
                 Application.Current.Dispatcher.Invoke(() => UserDataGrid.ItemsSource = executedResult);
             }
         }
+
         private async void LoadUserDataToViewAsync()
         {
             await Task.Factory.StartNew(LoadUserDataToView);

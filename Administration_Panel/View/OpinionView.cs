@@ -27,14 +27,17 @@ namespace Administration_Panel
                 Application.Current.Dispatcher.Invoke(() => OpinionDataGrid.ItemsSource = executedResult);
             }
         }
+
         private async void LoadOpinionToViewAsync()
         {
             await Task.Factory.StartNew(LoadOpinionToView);
         }
+
         private void AddOpinionRecord()
         {
             new OpinionForm().Show();
         }
+
         private void SearchForUser_OpinionView(string text)
         {
             using (var ctx = new MyDbContext())
@@ -45,6 +48,7 @@ namespace Administration_Panel
                 Application.Current.Dispatcher.Invoke(() => OpinionDataGrid.ItemsSource = executedResult);
             }
         }
+
         private async void SearchForUser_OpinionViewAsync(string text)
         {
             await Task.Factory.StartNew(() => SearchForUser_OpinionView(text));
@@ -65,7 +69,8 @@ namespace Administration_Panel
         {
             await Task.Factory.StartNew(() => SearchForSite_OpinionView(text));
         }
-            private void DeleteOpinionRecord()
+
+        private void DeleteOpinionRecord()
         {
             var selected = SiteDataGrid.SelectedItem as Opinion;
 

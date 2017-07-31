@@ -58,6 +58,7 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
             opinion = editOpinion;
             OpinionBody = opinion.Description;
         }
+
         void LoadCombboxResource()
         {
             var load = new Task[2];
@@ -80,6 +81,7 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
                 });
             Task.WaitAll(load);
         }
+
         private void SubmitBtn(object obj)
         {
             if (!String.IsNullOrEmpty(OpinionBody))

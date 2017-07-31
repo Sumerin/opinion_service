@@ -17,10 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace Administration_Panel.ModelViewWindow
-{
-    /// <summary>
-    /// Interaction logic for UserForm.xaml
-    /// </summary>
+{ 
     public partial class UserForm : Window
     {
         public UserForm()

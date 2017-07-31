@@ -15,13 +15,12 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
 
         public event EventHandler CanExecuteChanged;
 
-        public RelayCommand(Action<object> execute) 
+        public RelayCommand(Action<object> execute)
                    : this(execute, null)
-    {
+        {
         }
 
-        public RelayCommand(Action<object> execute,
-                       Predicate<object> canExecute)
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
         {
             _execute = execute;
             _canExecute = canExecute;

@@ -99,6 +99,7 @@ namespace Administration_Panel
 
                     break;
             }
+            RefreshRecord(null,null);
         }
 
         private void RefreshRecord(object sender, RoutedEventArgs e)
