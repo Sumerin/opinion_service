@@ -88,7 +88,9 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
                                 ResultText = "Username already Taken!";
                                 return;
                             }
-
+                            user = (from userdb in ctx.UserAccount
+                                    where user.UserId.Equals(userdb.UserId)
+                                    select userdb).FirstOrDefault();
                             user.Username = this.Username;
                             user.Salt = salt;
                             user.Password = hashedPassword;

@@ -1,4 +1,5 @@
 ﻿using Administration_Panel.ModelViewWindow.ViewModel;
+using opinion_Service.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,12 @@ namespace Administration_Panel.ModelViewWindow
         {
             InitializeComponent();
             this.DataContext = new OpinionViewModel(this);
+        }
+        public OpinionForm(Opinion opinion)
+        {
+            InitializeComponent();
+            this.DataContext = new OpinionViewModel(this, opinion);
+
         }
     }
 }

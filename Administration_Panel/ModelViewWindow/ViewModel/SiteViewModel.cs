@@ -115,6 +115,9 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
                 }
                 else
                 {
+                    site = (from sitedb in ctx.Sites
+                            where site.SiteId.Equals(sitedb.SiteId)
+                            select sitedb).FirstOrDefault();
                     site.DomainName = this.DomainName;
                 }
                 ctx.SaveChanges();

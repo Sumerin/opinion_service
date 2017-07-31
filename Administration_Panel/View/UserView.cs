@@ -71,5 +71,10 @@ namespace Administration_Panel
                 }
             }
         }
+
+        private void EditUserRecord(User item)
+        {
+            new UserForm(item).Show();
+        }
     }
 }

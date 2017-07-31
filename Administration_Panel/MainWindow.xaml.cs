@@ -38,6 +38,7 @@ namespace Administration_Panel
             OpinionDataGrid.AutoGenerateColumns = false;
             OpinionDataGrid.CanUserAddRows = false;
             OpinionDataGrid.CanUserDeleteRows = false;
+            OpinionDataGrid.IsReadOnly = true;
             LoadOpinionToView();
         }
 
@@ -46,6 +47,7 @@ namespace Administration_Panel
             UserDataGrid.AutoGenerateColumns = false;
             UserDataGrid.CanUserAddRows = false;
             UserDataGrid.CanUserDeleteRows = false;
+            UserDataGrid.IsReadOnly = true;
             LoadUserDataToView();
         }
 
@@ -54,6 +56,7 @@ namespace Administration_Panel
             SiteDataGrid.AutoGenerateColumns = false;
             SiteDataGrid.CanUserAddRows = false;
             SiteDataGrid.CanUserDeleteRows = false;
+            SiteDataGrid.IsReadOnly = true;
             LoadSiteToView();
         }
 
@@ -125,6 +128,30 @@ namespace Administration_Panel
             }
         }
 
-      
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var send = sender as DataGridRow;
+            if(send!=null)
+            {
+                switch ((ChoosenTab)TabControl.SelectedIndex)
+                {
+                    case ChoosenTab.SiteTab:
+                        EditSiteRecord((Site)send.Item);
+                        break;
+
+                    case ChoosenTab.UserTab:
+                        EditUserRecord((User)send.Item);
+                        break;
+
+                    case ChoosenTab.OpinionTab:
+                        EditOpinionRecord((Opinion)send.Item);
+                        break;
+
+                    default:
+
+                        break;
+                };
+            }
+        }
     }
 }

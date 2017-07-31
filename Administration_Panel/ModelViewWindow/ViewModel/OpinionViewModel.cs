@@ -110,13 +110,12 @@ namespace Administration_Panel.ModelViewWindow.ViewModel
                             Description = OpinionBody
                         };
                         ctx.Opinions.Add(opinion);
-
-
-
-
                     }
                     else
                     {
+                        opinion = (from opiniondb in ctx.Opinions
+                                   where opinion.OpinionId.Equals(opiniondb.OpinionId)
+                                   select opiniondb).FirstOrDefault();
                         opinion.Site = opinionAddress;
                         opinion.User = opinionMadeBy;
                         opinion.Description = OpinionBody;

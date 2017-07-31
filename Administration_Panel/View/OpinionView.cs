@@ -87,5 +87,10 @@ namespace Administration_Panel
                 }
             }
         }
+
+        private void EditOpinionRecord(Opinion item)
+        {
+            new OpinionForm(item).Show();
+        }
     }
 }

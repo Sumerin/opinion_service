@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using opinion_Service.Models;
 using Administration_Panel.ModelViewWindow;
+using System.Diagnostics;
 
 namespace Administration_Panel
 {
@@ -38,6 +39,7 @@ namespace Administration_Panel
         {
             new SiteForm().Show();
         }
+
         private void SearchForSite_SiteView(string text)
         {
             using (var ctx = new MyDbContext())
@@ -48,10 +50,12 @@ namespace Administration_Panel
                 Application.Current.Dispatcher.Invoke(() => SiteDataGrid.ItemsSource = executedResult);
             }
         }
+
         private async void SearchForSite_SiteViewAsync(string text)
         {
             await Task.Factory.StartNew(() => SearchForSite_SiteView(text));
         }
+
         private void DeleteSiteRecord()
         {
             var selected = SiteDataGrid.SelectedItem as Site;
@@ -70,5 +74,9 @@ namespace Administration_Panel
             }
         }
 
+        private void EditSiteRecord(Site item)
+        {
+                new SiteForm(item).Show();
+        }
     }
 }

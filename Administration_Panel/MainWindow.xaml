@@ -10,7 +10,12 @@
         <TabControl x:Name="TabControl" HorizontalAlignment="Left" Height="459" Margin="10,10,0,0" VerticalAlignment="Top" Width="614">
             <TabItem Header="Site" Height="22" VerticalAlignment="Bottom" Margin="-2,-2,-2,4">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="SiteDataGrid" HorizontalAlignment="Left" Height="411" Margin="10,10,0,0" VerticalAlignment="Top" Width="164">
+                    <DataGrid x:Name="SiteDataGrid" HorizontalAlignment="Left" Height="411" Margin="10,10,0,0" VerticalAlignment="Top" Width="164" >
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGrid_MouseDoubleClick"/>
+                            </Style>
+                        </DataGrid.Resources>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Site" Binding="{Binding DomainName}" />
                         </DataGrid.Columns>
@@ -20,6 +25,11 @@
             <TabItem Header="User">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="UserDataGrid" Margin="10">
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGrid_MouseDoubleClick"/>
+                            </Style>
+                        </DataGrid.Resources>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Username" Binding="{Binding Username}" />
                             <DataGridTextColumn Header="Password" Binding="{Binding Password}" />
@@ -31,6 +41,11 @@
             <TabItem Header="Opinion" Height="24" VerticalAlignment="Bottom">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="OpinionDataGrid" Margin="10">
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGrid_MouseDoubleClick"/>
+                            </Style>
+                        </DataGrid.Resources>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Site" Binding="{Binding Site.DomainName}" />
                             <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
